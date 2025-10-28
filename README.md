@@ -20,8 +20,6 @@ Valida que el título de la página de inventario sea correcto, verifica la pres
 ```bash
 pytest -v -k test_catalogo_productos -s
 ```
----
----
 
 ## 📸 Resultado esperado
 - ✅ El login redirige correctamente a `/inventory.html`.
