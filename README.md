@@ -47,3 +47,57 @@ pytest -v -k test_agregar_primer_producto_al_carrito -s
 ✅ El contador del carrito muestra "1" después de agregar el producto.
 
 ✅ Al ingresar al carrito, se visualiza el producto agregado: “Sauce Labs Backpack”.
+
+---
+
+## 🧩 Propósito del proyecto
+
+Este proyecto corresponde a la **Pre-Entrega de Automatización QA**, utilizando **Python + Selenium + Pytest**.  
+El objetivo es automatizar pruebas funcionales en el sitio [saucedemo.com](https://www.saucedemo.com) para validar:
+
+- Login exitoso.
+- Visualización del catálogo de productos.
+- Interacción con el carrito de compras.
+
+---
+
+## 🧠 Tecnologías utilizadas
+
+- **Python 3.13**
+- **Selenium 4.21.0**
+- **Pytest 8.2.1**
+- **Pytest-HTML 4.1.1**
+- **Webdriver-Manager 4.0.2**
+
+---
+
+## ⚙️ Instalación
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/Marisa2191/Pre-entrega-Marisa-Gonzales.git
+   cd Pre-entrega-Marisa-Gonzales
+2. Crear y activar un entorno virtual:
+    python3 -m venv .venv
+    source .venv/bin/activate
+3. Instalar las dependencias:
+    pip install -r requirements.txt
+
+▶️ Ejecución de pruebas
+
+Para ejecutar todas las pruebas y generar el reporte HTML:
+    pytest -v -s --html=reports/reporte.html --self-contained-html
+
+📊 Reporte HTML
+
+El reporte se genera automáticamente en:
+    reports/reporte.html
+Puede abrirse en el navegador con doble clic o desde VS Code con “Reveal in Finder”.
+
+📸 Evidencias automáticas
+
+Si se desea agregar capturas automáticas o logs en caso de fallo, pueden almacenarse en:
+   reports/screenshots/
+(Esta carpeta ya está creada en la estructura del proyecto.)
+
+✅ Todos los tests finalizan con resultado “PASSED”.
