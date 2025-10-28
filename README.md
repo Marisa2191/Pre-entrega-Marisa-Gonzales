@@ -6,3 +6,11 @@ Automatiza el login en https://www.saucedemo.com usando Python + Selenium + Pyte
 ### Cómo ejecutar
 ```bash
 pytest -v
+---
+
+## Ejercicio 2: Catálogo de productos  
+Valida el título de la página de inventario, verifica la presencia de productos y muestra el nombre y precio del primero.
+
+### Cómo ejecutar  
+```bash
+pytest -v -k test_catalogo_productos -s
