@@ -19,6 +19,7 @@ Valida que el título de la página de inventario sea correcto, verifica la pres
 ### Cómo ejecutar
 ```bash
 pytest -v -k test_catalogo_productos -s
+```
 ---
 ---
 
