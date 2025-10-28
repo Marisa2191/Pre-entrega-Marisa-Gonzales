@@ -19,3 +19,10 @@ Valida que el título de la página de inventario sea correcto, verifica la pres
 ### Cómo ejecutar
 ```bash
 pytest -v -k test_catalogo_productos -s
+---
+
+## 📸 Resultado esperado
+- ✅ El login redirige correctamente a `/inventory.html`.
+- ✅ Se muestra el título **“Products”**.
+- ✅ En el catálogo se lista al menos un producto.
+- ✅ El primer producto visible es **“Sauce Labs Backpack - $29.99”**.
