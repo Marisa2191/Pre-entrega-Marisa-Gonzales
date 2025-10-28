@@ -10,7 +10,7 @@ Automatiza el login en [https://www.saucedemo.com](https://www.saucedemo.com) va
 ### Cómo ejecutar
 ```bash
 pytest -v -k test_login_exitoso
-
+```
 ---
 
 ## 🛒 Ejercicio 2: Catálogo de productos  
