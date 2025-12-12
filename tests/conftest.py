@@ -26,3 +26,21 @@ def driver():
     drv.implicitly_wait(5)
     yield drv
     drv.quit()
+    
+import csv
+from pathlib import Path
+import pytest
+
+@pytest.fixture
+def login_data():
+    ruta = Path(__file__).resolve().parents[1] / "data" / "login_data.csv"
+    data = []
+
+    with ruta.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            row["debe_funcionar"] = row["debe_funcionar"].lower() == "true"
+            data.append(row)
+
+    return data
+

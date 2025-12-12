@@ -6,39 +6,25 @@ from pages.login_page import LoginPage
 from utils.logger import logger
 
 
+def test_login_desde_csv(driver, login_data):
 
+    for fila in login_data:
+        usuario = fila["usuario"]
+        password = fila["password"]
+        debe_funcionar = str(fila["debe_funcionar"]).strip().lower() == "true"
 
-@pytest.mark.parametrize(
-    "usuario,password,debe_funcionar",
-    [
-        ("standard_user", "secret_sauce", True),   # Login válido
-        ("admin", "1234", False),                  # Login inválido
-    ],
-)
-def test_login_basico(driver, usuario, password, debe_funcionar):
+        driver.delete_all_cookies()  # para que cada fila arranque “limpia”
 
+        login_page = LoginPage(driver)
 
-    """
-    Primer ejercicio del TP:
-    - Login exitoso
-    - Login fallido
-    - Uso de Page Object Model
-    """
+        logger.info(f"Intentando login con usuario: {usuario}")
+        login_page.abrir_pagina()
+        login_page.login_completo(usuario, password)
 
-    
-    login_page = LoginPage(driver)
-
-
-    logger.info(f"Intentando login con usuario: {usuario}")
-    login_page.abrir_pagina()
-    login_page.login_completo(usuario, password)
-
-    if debe_funcionar:
-        # Validamos que nos lleva al inventario
-        assert "inventory" in driver.current_url
-        logger.info("Login exitoso validado correctamente.")
-    else:
-        # Validamos mensaje de error
-        mensaje = login_page.obtener_error()
-        assert "Epic sadface" in mensaje
-        logger.info("Login fallido validado correctamente.")
+        if debe_funcionar:
+            assert "inventory" in driver.current_url
+            logger.info("Login exitoso validado correctamente.")
+        else:
+            mensaje = login_page.obtener_error()
+            assert "Epic sadface" in mensaje
+            logger.info("Login fallido validado correctamente.")
