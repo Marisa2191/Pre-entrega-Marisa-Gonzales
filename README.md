@@ -143,8 +143,80 @@ reports/reporte.html
 * Obtención de nombre y precio de productos
 * Interacción con el carrito de compras
 
+
 ---
 
+## 🌐 Pruebas de API (Requests)
+
+Además de las pruebas UI con Selenium, el proyecto incluye pruebas de API utilizando la librería **requests**, validando:
+
+- Códigos de estado HTTP
+- Estructura de respuestas JSON
+- Escenarios de éxito y error
+- Encadenamiento de peticiones (POST → GET)
+
+### 📁 Ubicación
+Los tests de API están en la carpeta:
+
+tests_api/
+
+### ✅ Casos implementados (API pública: JSONPlaceholder)
+
+**1) GET /posts (éxito)**
+- Verifica `status_code == 200`
+- Valida que la respuesta sea una lista y que tenga elementos
+
+Archivo:
+- `tests_api/test_api_jsonplaceholder.py`
+
+**2) POST /posts (éxito)**
+- Verifica `status_code in (200, 201)`
+- Valida que la respuesta sea JSON (dict)
+- Verifica que devuelva un `id` y que refleje campos enviados (title/body/userId)
+
+Archivo:
+- `tests_api/test_api_post_posts.py`
+
+**3) POST /posts (error en endpoint)**
+- Envía la petición a un endpoint inválido
+- Verifica que el status sea de error (ej: 404)
+
+Archivo:
+- `tests_api/test_api_post_posts.py`
+
+**4) DELETE /posts/{id}**
+- Verifica un status esperado de borrado (ej: 200 o 204)
+- Tolera respuesta vacía o `{}` (según comportamiento del servicio)
+
+Archivo:
+- `tests_api/test_api_delete_posts.py`
+
+### 🔗 Encadenamiento de peticiones (Opcional)
+Se implementa un flujo donde una petición depende de otra:
+
+1. Se crea un recurso con **POST**
+2. Se usa el `id` devuelto para intentar obtenerlo con **GET**
+
+> Nota: JSONPlaceholder es un servicio “fake”, por lo que puede devolver un `id` creado pero no persistirlo realmente.
+> Por eso el test valida el `id` del POST y maneja la respuesta del GET de forma esperable.
+
+Archivo:
+- `tests_api/test_api_chain_post_get.py`
+
+### ▶️ Cómo ejecutar (API)
+
+Ejecutar solo API:
+```bash
+pytest tests_api -v
+
+Ejecutar solo encadenamiento POST → GET:
+
+pytest tests_api/test_api_chain_post_get.py -v
+
+Ejecutar todo el proyecto (UI + API):
+
+pytest -v
+---
 ## 📊 Estado del proyecto
 
 ✔️ Login automatizado
