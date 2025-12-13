@@ -3,7 +3,10 @@
 
 import pytest
 from pages.login_page import LoginPage
-from utils.logger import logger
+from utils.logger import get_logger
+
+logger = get_logger()
+
 
 
 def test_login_desde_csv(driver, login_data):
