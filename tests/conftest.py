@@ -26,7 +26,7 @@ def driver():
     drv.implicitly_wait(5)
     yield drv
     drv.quit()
-    
+
 import csv
 from pathlib import Path
 import pytest
@@ -43,4 +43,46 @@ def login_data():
             data.append(row)
 
     return data
+
+# tests/conftest.py
+import os
+import re
+from datetime import datetime
+import pytest
+
+def _safe_filename(text: str) -> str:
+    # deja solo letras/números/guion/underscore
+    return re.sub(r"[^a-zA-Z0-9_-]+", "_", text)
+
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_makereport(item, call):
+    """
+    Si el test falla en la fase 'call', toma screenshot usando el fixture 'driver'
+    y lo guarda en reports/screenshots/
+    """
+    outcome = yield
+    report = outcome.get_result()
+
+    # Solo si falló el test (fase de ejecución real)
+    if report.when == "call" and report.failed:
+        driver = item.funcargs.get("driver", None)
+        if driver is None:
+            return  # no hay webdriver en este test
+
+        # carpeta destino
+        screenshots_dir = os.path.join(item.config.rootpath, "reports", "screenshots")
+        os.makedirs(screenshots_dir, exist_ok=True)
+
+        # nombre: fecha_hora + nombre_del_test
+        ts = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        test_name = _safe_filename(item.name)
+        filename = f"{ts}_{test_name}.png"
+        filepath = os.path.join(screenshots_dir, filename)
+
+        # sacar screenshot
+        driver.save_screenshot(filepath)
+
+        # opcional: mostrar ruta en consola
+        print(f"\n📸 Screenshot guardado: {filepath}")
+
 
