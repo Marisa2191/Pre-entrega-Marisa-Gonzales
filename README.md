@@ -130,16 +130,40 @@ pytest -v
 ```bash
 pytest tests/test_cart.py -v
 ```
+---
+## 🔄 Integración CI/CD
+
+El proyecto cuenta con integración continua (CI) mediante **GitHub Actions**.
+
+El pipeline se ejecuta automáticamente en los siguientes eventos:
+- Push a la rama `main`
+- Creación de Pull Requests sobre `main`
+
+Durante la ejecución del workflow:
+- Se instala el entorno de Python y las dependencias necesarias
+- Se ejecutan todos los tests automatizados con Pytest
+- Se genera un reporte HTML de Pytest
+- El reporte se almacena como **artifact** de la ejecución
+- En caso de fallos, se capturan screenshots automáticamente
+
+El estado del pipeline se visualiza en tiempo real mediante el badge incluido en este README.
 
 ---
 
 ## 📊 Reportes
 
-Si se utiliza Pytest‑HTML, los reportes se generan en:
+El proyecto utiliza **pytest-html** para la generación de reportes HTML detallados.
 
-```
-reports/
-```
+Los reportes incluyen:
+- Listado de tests ejecutados
+- Estado de cada test (pasado / fallado)
+- Duración de ejecución
+- Evidencias visuales (screenshots) en caso de fallos
+
+En ejecuciones locales, los reportes se generan en el directorio `reports/`.
+
+En ejecuciones CI/CD, los reportes se almacenan automáticamente como **artifacts en GitHub Actions**.
+
 
 ---
 
@@ -163,6 +187,8 @@ QA Analyst – Automation
 
 ## ✅ Estado del Proyecto
 
-✔ Proyecto finalizado
-✔ Tests ejecutándose correctamente
-✔ Repositorio actualizado en GitHub
+Proyecto finalizado con:
+- Tests automatizados funcionales y de API
+- Logging centralizado
+- Reportes HTML
+- Integración CI/CD activa
