@@ -1,3 +1,5 @@
+[![QA Automation CI](https://github.com/Marisa2191/Pre-entrega-Marisa-Gonzales/actions/workflows/ci.yml/badge.svg)](https://github.com/Marisa2191/Pre-entrega-Marisa-Gonzales/actions/workflows/ci.yml)
+
 # 🧪 QA Automation – Selenium & Pytest
 
 ## 📌 Descripción del Proyecto
