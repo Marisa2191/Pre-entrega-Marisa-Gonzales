@@ -149,7 +149,16 @@ Durante la ejecución del workflow:
 El estado del pipeline se visualiza en tiempo real mediante el badge incluido en este README.
 
 ---
+## 🗂 Control de Versiones
 
+El proyecto se encuentra versionado utilizando **Git y GitHub**.
+
+Durante el desarrollo:
+- Se realizaron commits frecuentes y descriptivos para documentar el progreso del proyecto
+- La rama principal (`main`) contiene la versión estable del sistema
+- GitHub se utilizó como repositorio central para el control de versiones y la documentación
+
+---
 ## 📊 Reportes
 
 El proyecto utiliza **pytest-html** para la generación de reportes HTML detallados.
