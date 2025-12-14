@@ -29,7 +29,17 @@ logger = get_logger()
 def driver():
     options = Options()
     options.add_argument("--incognito")
-    options.add_argument("--start-maximized")
+
+    # Detectar CI (GitHub Actions setea CI=true)
+    is_ci = os.getenv("CI", "false").lower() == "true"
+
+    if is_ci:
+        options.add_argument("--headless=new")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--window-size=1920,1080")
+    else:
+        options.add_argument("--start-maximized")
 
     service = Service(ChromeDriverManager().install())
     drv = webdriver.Chrome(service=service, options=options)
@@ -37,6 +47,7 @@ def driver():
 
     yield drv
     drv.quit()
+
 
 # =========================
 # LOGIN DATA CSV
